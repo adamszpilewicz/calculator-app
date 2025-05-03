@@ -23,21 +23,31 @@
 
 <div class="mb-4">
     <h2>Manage Pack Sizes</h2>
-    <label for="newSize" class="form-label">Add new pack size:</label>
-    <input type="number" id="newSize" class="form-control mb-2" placeholder="e.g., 500">
-    <button id="addSize" class="btn btn-success mb-3">Add Pack Size</button>
 
-    <label for="deleteSize" class="form-label">Remove a pack size:</label>
-    <input type="number" id="deleteSize" class="form-control mb-2" placeholder="e.g., 500">
-    <button id="removeSize" class="btn btn-warning mb-3">Remove Pack Size</button>
+    <!-- Add pack size section -->
+    <div class="mb-4">
+        <label for="newSize" class="form-label">Add new pack size:</label>
+        <input type="number" id="newSize" class="form-control mb-2" placeholder="e.g., 500">
+        <button id="addSize" class="btn btn-success">Add Pack Size</button>
+    </div>
 
-    <br>
+    <!-- Remove pack size section -->
+    <div class="mb-4">
+        <label for="deleteSize" class="form-label">Remove a pack size:</label>
+        <input type="number" id="deleteSize" class="form-control mb-2" placeholder="e.g., 500">
+        <button id="removeSize" class="btn btn-warning">Remove Pack Size</button>
+    </div>
+
     <button id="removeAllSizes" class="btn btn-danger">⚠️ Remove All Pack Sizes</button>
 </div>
 
 <div class="mb-4">
     <h2>Result:</h2>
-    <pre id="result" class="bg-light p-3 rounded">No calculation yet.</pre>
+    <div class="card">
+        <div class="card-body bg-light">
+            <pre id="result" class="mb-0 text-dark">No calculation yet.</pre>
+        </div>
+    </div>
 </div>
 
 <script src="/static/app.js"></script>
