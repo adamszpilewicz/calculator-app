@@ -91,6 +91,7 @@ type state struct {
 type priorityQueue []*state
 
 func (pq priorityQueue) Len() int { return len(pq) }
+
 func (pq priorityQueue) Less(i, j int) bool {
 	// Priority: smaller totalItems, then fewer packs
 	if pq[i].totalItems != pq[j].totalItems {
@@ -98,10 +99,13 @@ func (pq priorityQueue) Less(i, j int) bool {
 	}
 	return pq[i].numPacks < pq[j].numPacks
 }
+
 func (pq priorityQueue) Swap(i, j int) { pq[i], pq[j] = pq[j], pq[i] }
+
 func (pq *priorityQueue) Push(x interface{}) {
 	*pq = append(*pq, x.(*state))
 }
+
 func (pq *priorityQueue) Pop() interface{} {
 	old := *pq
 	n := len(old)
