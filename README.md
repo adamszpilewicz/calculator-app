@@ -7,7 +7,7 @@ It respects the following business rules:
 1. ✅ Only **whole packs** can be sent (no breaking packs).
 2. ✅ Send the **least number of items** to fulfill the order (never send less).
 3. ✅ Among solutions with the same total items, send **as few packs as possible**.
-
+   <br></br>
 ## 🚀 Live Demo
 
 👉 [live demo app](https://immense-mountain-86814-9a015e36c702.herokuapp.com/)
@@ -28,7 +28,7 @@ Packs:
 
 ✅ Minimal total items  
 ✅ Minimal packs for that total
-
+<br></br>
 ## 🏗️ Features
 
 - 🌐 Web-based user interface (HTML + JavaScript)
@@ -39,7 +39,7 @@ Packs:
 - 🧹 Remove **all pack sizes** with one click
 - 📝 API returns optimal pack combination
 - ✅ Fully deployable on **Heroku**
-
+  <br></br>
 ## 📦 Available API Endpoints
 
 | Method | Path                    | Description                            |
@@ -49,7 +49,7 @@ Packs:
 | DELETE | `/api/packsizes/delete`  | Remove a pack size `?size=N`           |
 | DELETE | `/api/packsizes/deleteall` | Remove **all** pack sizes            |
 | GET    | `/api/calculate?quantity=N` | Calculate optimal packs for quantity |
-
+<br></br>
 ## 🖥️ Running Locally
 
 1. **Install Go (1.20+)**
@@ -78,7 +78,7 @@ go build -o my-order-app
 ```
 http://localhost:8080
 ```
-
+<br></br>
 ## 📝 Project Structure
 ```bash
 my-order-app/
@@ -94,7 +94,7 @@ my-order-app/
 ├── index.html
 └── app.js
 ```
-
+<br></br>
 ## 🧑‍💻 Configuration
 Initial pack sizes are stored in config.json, but pack sizes can be modified dynamically from the UI or API without restarting the app.
 
