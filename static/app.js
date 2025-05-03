@@ -4,23 +4,34 @@ function loadPackSizes() {
         .then(data => {
             const list = document.getElementById('packsizes');
             list.innerHTML = ''; // clear existing list
-            if (data.length === 0) {
+
+            if (!Array.isArray(data) || data.length === 0) {
                 const li = document.createElement('li');
                 li.textContent = '(no pack sizes configured)';
+                li.classList.add('list-group-item', 'text-muted');
                 list.appendChild(li);
-            } else {
-                data.forEach(size => {
-                    const li = document.createElement('li');
-                    li.textContent = size;
-                    list.appendChild(li);
-                });
+                return;
             }
+
+            data.forEach(size => {
+                const li = document.createElement('li');
+                li.textContent = size;
+                li.classList.add('list-group-item');
+                list.appendChild(li);
+            });
         })
-        .catch(err => console.error('Error fetching pack sizes:', err));
+        .catch(err => {
+            console.error('Error fetching pack sizes:', err);
+            const list = document.getElementById('packsizes');
+            list.innerHTML = '<li class="list-group-item text-danger">(error loading pack sizes)</li>';
+        });
 }
 
 document.getElementById('calculate').addEventListener('click', () => {
     const qty = document.getElementById('quantity').value;
+    const resultBox = document.getElementById('result');
+    resultBox.classList.remove('bg-danger', 'text-white'); // reset error style
+
     if (!qty || qty <= 0) {
         alert('Please enter a positive quantity');
         return;
@@ -37,11 +48,12 @@ document.getElementById('calculate').addEventListener('click', () => {
             data.packs.forEach(p => {
                 output += `  ${p.count} x ${p.size}\n`;
             });
-            document.getElementById('result').textContent = output;
+            resultBox.textContent = output;
         })
         .catch(err => {
             console.error('Error calculating packs:', err);
-            alert('Error: ' + err.message);
+            resultBox.textContent = 'Error: ' + err.message;
+            resultBox.classList.add('bg-danger', 'text-white');
         });
 });
 
@@ -66,7 +78,6 @@ document.getElementById('addSize').addEventListener('click', () => {
         })
         .catch(err => {
             console.error('Error adding pack size:', err);
-            alert('Error: ' + err.message);
         });
 });
 
@@ -87,7 +98,6 @@ document.getElementById('removeSize').addEventListener('click', () => {
         })
         .catch(err => {
             console.error('Error removing pack size:', err);
-            alert('Error: ' + err.message);
         });
 });
 
@@ -104,9 +114,8 @@ document.getElementById('removeAllSizes').addEventListener('click', () => {
         })
         .catch(err => {
             console.error('Error removing all pack sizes:', err);
-            alert('Error: ' + err.message);
         });
 });
 
-// Load pack sizes on page load
+// Initial load
 loadPackSizes();

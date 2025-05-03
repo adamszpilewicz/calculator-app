@@ -25,6 +25,11 @@ func (h *Handler) Calculate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if len(h.PackSizes) == 0 {
+		http.Error(w, "No pack sizes configured", http.StatusBadRequest)
+		return
+	}
+
 	packs := calculator.CalculatePacks(quantity, h.PackSizes)
 	total := calculator.TotalItems(packs)
 
