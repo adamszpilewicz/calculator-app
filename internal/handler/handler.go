@@ -9,14 +9,17 @@ import (
 	"my-order-app/internal/calculator"
 )
 
+// Handler is the HTTP handler for managing pack sizes and calculating orders
 type Handler struct {
 	PackSizes []int
 }
 
+// NewHandler creates a new Handler with the given pack sizes
 func NewHandler(packSizes []int) *Handler {
 	return &Handler{PackSizes: packSizes}
 }
 
+// Calculate handles the calculation of packs based on the quantity provided in the query string
 func (h *Handler) Calculate(w http.ResponseWriter, r *http.Request) {
 	q := r.URL.Query().Get("quantity")
 	quantity, err := strconv.Atoi(q)
@@ -45,11 +48,13 @@ func (h *Handler) Calculate(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(resp)
 }
 
+// GetPackSizes returns the current pack sizes in JSON format
 func (h *Handler) GetPackSizes(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(h.PackSizes)
 }
 
+// AddPackSize adds a new pack size to the list, ensuring no duplicates
 func (h *Handler) AddPackSize(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -78,6 +83,7 @@ func (h *Handler) AddPackSize(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// DeletePackSize removes a pack size from the list
 func (h *Handler) DeletePackSize(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodDelete {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -110,6 +116,7 @@ func (h *Handler) DeletePackSize(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// DeleteAllPackSizes clears all pack sizes
 func (h *Handler) DeleteAllPackSizes(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodDelete {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)

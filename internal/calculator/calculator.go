@@ -81,6 +81,7 @@ func TotalItems(packs []PackResult) int {
 
 // ---- internal types ----
 
+// state represents a state in the priority queue
 type state struct {
 	totalItems int
 	numPacks   int
@@ -90,8 +91,10 @@ type state struct {
 // priorityQueue implements heap.Interface based on totalItems, then numPacks
 type priorityQueue []*state
 
+// Len returns the number of items in the priority queue
 func (pq priorityQueue) Len() int { return len(pq) }
 
+// Less compares two states based on totalItems and numPacks
 func (pq priorityQueue) Less(i, j int) bool {
 	// Priority: smaller totalItems, then fewer packs
 	if pq[i].totalItems != pq[j].totalItems {
@@ -100,12 +103,15 @@ func (pq priorityQueue) Less(i, j int) bool {
 	return pq[i].numPacks < pq[j].numPacks
 }
 
+// Swap swaps two elements in the priority queue
 func (pq priorityQueue) Swap(i, j int) { pq[i], pq[j] = pq[j], pq[i] }
 
+// Push adds a new state to the priority queue
 func (pq *priorityQueue) Push(x interface{}) {
 	*pq = append(*pq, x.(*state))
 }
 
+// Pop removes and returns the last element from the priority queue
 func (pq *priorityQueue) Pop() interface{} {
 	old := *pq
 	n := len(old)
@@ -114,6 +120,7 @@ func (pq *priorityQueue) Pop() interface{} {
 	return item
 }
 
+// copyMap creates a shallow copy of a map[int]int
 func copyMap(original map[int]int) map[int]int {
 	newMap := make(map[int]int, len(original))
 	for k, v := range original {

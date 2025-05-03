@@ -6,10 +6,12 @@ import (
 	"sort"
 )
 
+// Config represents the configuration for pack sizes
 type Config struct {
 	PackSizes []int `json:"pack_sizes"`
 }
 
+// LoadConfig loads the configuration from a JSON file
 func LoadConfig(filename string) ([]int, error) {
 	file, err := os.Open(filename)
 	if err != nil {
