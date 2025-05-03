@@ -11,8 +11,7 @@ It respects the following business rules:
 ## 🚀 Live Demo
 
 👉 [live demo app](https://immense-mountain-86814-9a015e36c702.herokuapp.com/)
-
-(Replace with your deployed Heroku URL)
+<br></br>
 
 ## 🎯 Example
 
