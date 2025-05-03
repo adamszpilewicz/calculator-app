@@ -28,6 +28,7 @@ func main() {
 	http.HandleFunc("/api/packsizes", h.GetPackSizes)
 	http.HandleFunc("/api/packsizes/add", h.AddPackSize)
 	http.HandleFunc("/api/packsizes/delete", h.DeletePackSize)
+	http.HandleFunc("/api/packsizes/deleteall", h.DeleteAllPackSizes)
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./static/index.html")
 	})

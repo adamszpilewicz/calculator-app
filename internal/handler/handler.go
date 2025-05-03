@@ -104,3 +104,12 @@ func (h *Handler) DeletePackSize(w http.ResponseWriter, r *http.Request) {
 	h.PackSizes = newSizes
 	w.WriteHeader(http.StatusOK)
 }
+
+func (h *Handler) DeleteAllPackSizes(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodDelete {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	h.PackSizes = []int{} // clear pack sizes
+	w.WriteHeader(http.StatusOK)
+}

@@ -4,11 +4,17 @@ function loadPackSizes() {
         .then(data => {
             const list = document.getElementById('packsizes');
             list.innerHTML = ''; // clear existing list
-            data.forEach(size => {
+            if (data.length === 0) {
                 const li = document.createElement('li');
-                li.textContent = size;
+                li.textContent = '(no pack sizes configured)';
                 list.appendChild(li);
-            });
+            } else {
+                data.forEach(size => {
+                    const li = document.createElement('li');
+                    li.textContent = size;
+                    list.appendChild(li);
+                });
+            }
         })
         .catch(err => console.error('Error fetching pack sizes:', err));
 }
@@ -22,9 +28,7 @@ document.getElementById('calculate').addEventListener('click', () => {
 
     fetch('/api/calculate?quantity=' + qty)
         .then(resp => {
-            if (!resp.ok) {
-                return resp.text().then(text => { throw new Error(text) });
-            }
+            if (!resp.ok) return resp.text().then(text => { throw new Error(text) });
             return resp.json();
         })
         .then(data => {
@@ -89,5 +93,23 @@ document.getElementById('removeSize').addEventListener('click', () => {
         });
 });
 
-// Load initial pack sizes on page load
+document.getElementById('removeAllSizes').addEventListener('click', () => {
+    if (!confirm('Are you sure you want to remove ALL pack sizes?')) return;
+
+    fetch('/api/packsizes/deleteall', { method: 'DELETE' })
+        .then(resp => {
+            if (resp.ok) {
+                alert('All pack sizes removed');
+                loadPackSizes();
+            } else {
+                return resp.text().then(text => { throw new Error(text) });
+            }
+        })
+        .catch(err => {
+            console.error('Error removing all pack sizes:', err);
+            alert('Error: ' + err.message);
+        });
+});
+
+// Load pack sizes on page load
 loadPackSizes();
