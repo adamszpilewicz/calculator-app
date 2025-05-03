@@ -59,7 +59,6 @@ document.getElementById('addSize').addEventListener('click', () => {
     })
         .then(resp => {
             if (resp.ok) {
-                alert('Pack size added');
                 loadPackSizes();
             } else {
                 return resp.text().then(text => { throw new Error(text) });
@@ -81,7 +80,6 @@ document.getElementById('removeSize').addEventListener('click', () => {
     fetch('/api/packsizes/delete?size=' + delSize, { method: 'DELETE' })
         .then(resp => {
             if (resp.ok) {
-                alert('Pack size removed');
                 loadPackSizes();
             } else {
                 return resp.text().then(text => { throw new Error(text) });
@@ -99,7 +97,6 @@ document.getElementById('removeAllSizes').addEventListener('click', () => {
     fetch('/api/packsizes/deleteall', { method: 'DELETE' })
         .then(resp => {
             if (resp.ok) {
-                alert('All pack sizes removed');
                 loadPackSizes();
             } else {
                 return resp.text().then(text => { throw new Error(text) });
