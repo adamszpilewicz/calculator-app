@@ -9,7 +9,7 @@ It respects the following business rules:
 3. ✅ Among solutions with the same total items, send **as few packs as possible**.
    <br></br>
 ## 🚀 Live Demo
-
+You can visit below link to try out the calculator app:
 👉 [live demo app](https://immense-mountain-86814-9a015e36c702.herokuapp.com/)
 <br></br>
 
@@ -78,7 +78,7 @@ go build -o my-order-app
 ```
 http://localhost:8080
 ```
-<br></br>
+
 ## 📝 Project Structure
 ```bash
 my-order-app/
