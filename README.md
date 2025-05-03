@@ -49,8 +49,8 @@ Packs:
 | DELETE | `/api/packsizes/delete`  | Remove a pack size `?size=N`           |
 | DELETE | `/api/packsizes/deleteall` | Remove **all** pack sizes            |
 | GET    | `/api/calculate?quantity=N` | Calculate optimal packs for quantity |
-<br></br>
 
+<br></br>
 ## 🖥️ Running Locally
 
 1. **Install Go (1.20+)**
@@ -79,7 +79,7 @@ go build -o my-order-app
 ```
 http://localhost:8080
 ```
-
+<br></br>
 ## 📝 Project Structure
 ```bash
 my-order-app/
