@@ -50,6 +50,7 @@ Packs:
 | DELETE | `/api/packsizes/deleteall` | Remove **all** pack sizes            |
 | GET    | `/api/calculate?quantity=N` | Calculate optimal packs for quantity |
 <br></br>
+
 ## 🖥️ Running Locally
 
 1. **Install Go (1.20+)**
@@ -95,6 +96,7 @@ my-order-app/
 └── app.js
 ```
 <br></br>
+
 ## 🧑‍💻 Configuration
 Initial pack sizes are stored in config.json, but pack sizes can be modified dynamically from the UI or API without restarting the app.
 
